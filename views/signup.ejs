@@ -1,0 +1,69 @@
+<%- include ('partials/header') %>
+<main>
+  <div class="signup-wrapper">
+    <div class="row">
+      <form class="col s12" action="/signup" method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <div class="row">
+          <div class="input-field col s6">
+            <input
+              placeholder="やまだ"
+              id="first_name"
+              type="text"
+              class="validate"
+              name="firstName"
+              required="required"
+            />
+            <label for="first_name">氏</label>
+          </div>
+          <div class="input-field col s6">
+            <input
+              placeholder="たろう"
+              id="last_name"
+              type="text"
+              class="validate"
+              name="lastName"
+              required="required"
+            />
+            <label for="last_name">名</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input
+              id="email"
+              type="email"
+              class="validate"
+              name="email"
+              required="required"
+            />
+            <label for="email">Eメールアドレス</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input
+              id="password"
+              type="password"
+              class="validate"
+              name="password"
+              required="required"
+              minlength="8"
+              pattern="^[a-zA-Z\d]{8,100}"
+            />
+            <label for="password">パスワード（半角英数字8文字以上）</label>
+          </div>
+        </div>
+        <button
+          class="btn waves-effect waves-light"
+          type="submit"
+          name="action"
+        >
+          新規登録
+        </button>
+      </form>
+    </div>
+    <a href="/">トップページに戻る</a>
+  </div>
+</main>
+<%- include ('partials/footer') %>

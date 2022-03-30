@@ -1,0 +1,142 @@
+.header-wrapper {
+  display: flex;
+  justify-content: right;
+  width: 95%;
+  align-items: center;
+  p {
+    margin-right: 10px;
+  }
+}
+
+.top-wrapper {
+  margin-top: 8rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .waves-effect {
+    margin: auto;
+    margin-top: 30px;
+    width: 200px;
+  }
+}
+
+.login-wrapper {
+  margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  text-align: center;
+  p {
+    color: gray;
+    color: 16px;
+  }
+  .resetPassword-wrapper {
+    margin-top: 30px;
+  }
+  .btn {
+    width: 200px;
+  }
+}
+
+.signup-wrapper {
+  margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  text-align: center;
+  p {
+    color: gray;
+    color: 16px;
+  }
+  .btn {
+    width: 200px;
+  }
+}
+
+.logout-wrapper {
+  margin-top: 8rem;
+  text-align: center;
+  .waves-effect {
+    margin-top: 24px;
+    width: 200px;
+  }
+}
+
+.resetPassword-wrapper {
+  margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  text-align: center;
+  p {
+    color: gray;
+    color: 16px;
+  }
+  .btn {
+    width: 200px;
+  }
+}
+
+.verificationPassword-wrapper {
+  margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  text-align: center;
+  p {
+    color: gray;
+    color: 16px;
+  }
+  .btn {
+    width: 200px;
+  }
+}
+
+.showMailConfirmation-wrapper {
+  margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+
+  p {
+    color: black;
+    color: 16px;
+  }
+}
+
+.home-wrapper {
+  margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  text-align: center;
+}
+
+.user-wrapper {
+  margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  .tweet-wrapper {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    .col {
+      width: 70%;
+    }
+    .btn-floating {
+      position: absolute;
+      right: 40px;
+      bottom: 30px;
+    }
+  }
+}
+
+.error404-wrapper {
+  margin-top: 8rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  text-align: center;
+}

@@ -1,0 +1,28 @@
+<%- include("../partials/header.ejs")%>
+<main>
+  <div class="user-wrapper">
+    <div class="tweet-wrapper">
+      <form class="col s12" action="/auth/users" method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <div class="row">
+          <div class="input-field col s12">
+            <textarea
+              id="textarea1"
+              class="materialize-textarea"
+              name="tweet"
+            ></textarea>
+            <label for="textarea1">What's happening?</label>
+          </div>
+        </div>
+        <button class="btn-floating waves-effect waves-light" type="submit">
+          <i class="material-icons">add</i>
+        </button>
+      </form>
+    </div>
+    <ul>
+      <li>aaaa</li>
+      <li>aaaa</li>
+    </ul>
+  </div>
+</main>
+<%- include("../partials/footer.ejs")%>
