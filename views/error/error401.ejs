@@ -1,0 +1,17 @@
+<%- include ('../partials/header') %>
+<main>
+  <div class="error404-wrapper">
+    <% if (message === "NOT_FOUND_USER") { %>
+    <p style="color: red">
+      <%='パスワード処理に失敗しました。もう一度パスワードをリセットをしてください。'%>
+    </p>
+    <% } else { %>
+    <p style="color: red"><%='URLの有効期限がきれています。'%></p>
+    <% }%>
+    <p>
+      再度、パスワードをリセットする場合は
+      <a href="/users/resetPassword">こちらを</a>をクリックしてください。
+    </p>
+  </div>
+</main>
+<%- include ('../partials/footer') %>

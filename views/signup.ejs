@@ -1,6 +1,17 @@
 <%- include ('partials/header') %>
 <main>
   <div class="signup-wrapper">
+    <% if (message === "USERS_INVALID_VALUE") { %>
+    <p style="color: red">
+      <%= 'メールアドレスとパスワードは入力されていません。'%>
+    </p>
+    <% } else if (message === "USERS_ALREADY_EXISTS_USER") { %>
+    <p style="color: red"><%= '既に登録されたアドレスです。'%></p>
+    <% } else if (message) { %>
+    <p style="color: red"><%= '予期せぬエラーが起きました。'%></p>
+    <% }else{ %>
+    <p style="color: red"><%= ''%></p>
+    <% } %>
     <div class="row">
       <form class="col s12" action="/signup" method="post">
         <input type="hidden" name="_csrf" value="<%= csrfToken %>" />

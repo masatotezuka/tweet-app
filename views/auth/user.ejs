@@ -19,10 +19,19 @@
         </button>
       </form>
     </div>
-    <ul>
-      <li>aaaa</li>
-      <li>aaaa</li>
-    </ul>
+    <div class="tweet-items-wapper">
+      <ul>
+        <% userTweets.forEach(data => { %>
+        <div class="tweet-items">
+          <li>
+            <%= data.createdAt %>
+            <span> : </span>
+            <%= data.tweet %>
+          </li>
+        </div>
+        <% }); %>
+      </ul>
+    </div>
   </div>
 </main>
 <%- include("../partials/footer.ejs")%>

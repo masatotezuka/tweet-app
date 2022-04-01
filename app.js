@@ -5,6 +5,8 @@ const session = require("express-session");
 const csrf = require("csurf");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const sequelize = require("./models");
+const ejsLint = require("ejs-lint");
+require("dotenv").config();
 
 const routes = require("./routes/index");
 const signup = require("./routes/signup");
@@ -17,12 +19,12 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
-
+// ejsLint("login.ejs");
 const memoryStore = new SequelizeStore({
   db: sequelize,
   table: "Session",
   extendDefaultFields: extendDefaultFields,
-  checkExpirationInterval: 15 * 60 * 1000,
+  checkExpirationInterval: 10 * 60 * 1000,
   expiration: 24 * 60 * 60 * 1000,
 });
 
@@ -40,7 +42,6 @@ app.use(
     resave: false,
     saveUninitialized: false,
     // cookie: { secure: true },
-    // maxage: 1000 * 60 * 60 * 24,
   })
 );
 
