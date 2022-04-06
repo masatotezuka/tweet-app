@@ -1,6 +1,5 @@
 # tweet-app
 
-# Login-function-express
 
 ## 1. レポジトリをローカルにクローンする.
 
