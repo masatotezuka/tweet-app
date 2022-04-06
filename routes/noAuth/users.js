@@ -1,9 +1,9 @@
 const express = require("express");
-const createUuid = require("../helper/createUuid");
-const { UserError } = require("../helper/errorHandleHelper");
+const createUuid = require("../../helper/createUuid");
+const { UserError } = require("../../helper/errorHandleHelper");
 const router = express.Router();
-const { User } = require("../models/index");
-const sendMail = require("../helper/sendMail");
+const { User } = require("../../models/index");
+const sendMail = require("../../helper/sendMail");
 const bcrypt = require("bcrypt");
 
 router.get("/resetPassword", async (req, res) => {

@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const { User } = require("../models/index");
-const { UserError, ServerError } = require("../helper/errorHandleHelper");
+const { User } = require("../../models/index");
+const { UserError, ServerError } = require("../../helper/errorHandleHelper");
 const bcrypt = require("bcrypt");
 
 router.get("/", (req, res, next) => {
-  res.render("signup", { message: "" });
+  res.render("signUp", { message: "" });
 });
 
 router.post("/", async (req, res, next) => {
@@ -49,7 +49,7 @@ router.post("/", async (req, res, next) => {
     req.session.userName = newUser.firstName;
     res.redirect("/auth/home");
   } catch (error) {
-    res.render("signup", { message: error.message });
+    res.render("signUp", { message: error.message });
   }
 });
 

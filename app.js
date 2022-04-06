@@ -5,21 +5,16 @@ const session = require("express-session");
 const csrf = require("csurf");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const sequelize = require("./models");
-const ejsLint = require("ejs-lint");
 require("dotenv").config();
 
-const routes = require("./routes/index");
-const signup = require("./routes/signup");
-const login = require("./routes/login");
-const logout = require("./routes/logout");
-const users = require("./routes/users");
+const noAuth = require("./routes/noAuth");
 const auth = require("./routes/auth");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
-// ejsLint("login.ejs");
+
 const memoryStore = new SequelizeStore({
   db: sequelize,
   table: "Session",
@@ -41,7 +36,6 @@ app.use(
     store: memoryStore,
     resave: false,
     saveUninitialized: false,
-    // cookie: { secure: true },
   })
 );
 
@@ -49,6 +43,7 @@ const csrfProtection = csrf({ cookie: false });
 app.use(csrfProtection);
 app.use((req, res, next) => {
   res.locals.csrfToken = req.csrfToken();
+  console.log("csrf");
   next();
 });
 
@@ -62,11 +57,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/", routes);
-app.use("/signup", signup);
-app.use("/login", login);
-app.use("/logout", logout);
-app.use("/users", users);
+app.use("/", noAuth);
 app.use("/auth", auth);
 app.use((req, res) => {
   res.render("error/error404");

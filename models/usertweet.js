@@ -4,11 +4,13 @@ module.exports = (sequelize, DataTypes) => {
     tweet: { type: DataTypes.TEXT },
   });
   UserTweet.associate = (models) => {
-    // UserTweet.belongsToMany(models.User, {
-    //   foreignKey: "userId",
-    //   targetKey: "id",
-    // });
+    UserTweet.belongsTo(models.User);
   };
 
   return UserTweet;
 };
+
+// , {
+//   foreignKey: "userId",
+//   targetKey: "id",
+// }

@@ -1,7 +1,7 @@
 const express = require("express");
-const { UserError } = require("../helper/errorHandleHelper");
+const { UserError } = require("../../helper/errorHandleHelper");
 const router = express.Router();
-const { User } = require("../models/index");
+const { User } = require("../../models/index");
 const bcrypt = require("bcrypt");
 
 router.get("/", (req, res, next) => {
@@ -25,9 +25,14 @@ router.post("/", async (req, res, next) => {
     const match = await bcrypt.compare(requestData.password, user.password);
 
     if (match === true) {
+      console.log(req.session.backUrl);
       req.session.userId = user.id;
       req.session.userName = user.firstName;
-      res.redirect("/auth/home");
+      if (!req.session.backUrl) {
+        res.redirect("/auth/home");
+      } else {
+        res.redirect(req.session.backUrl);
+      }
     } else {
       throw new UserError(400, "NOT_FOUND_USER");
     }
