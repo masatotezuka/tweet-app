@@ -16,7 +16,6 @@ const users = require("./users");
 //   next();
 // });
 
-console.log("next1");
 router.use("/", home);
 router.use("/signUp", signUp);
 router.use("/login", login);

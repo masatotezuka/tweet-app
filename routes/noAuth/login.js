@@ -28,6 +28,7 @@ router.post("/", async (req, res, next) => {
       console.log(req.session.backUrl);
       req.session.userId = user.id;
       req.session.userName = user.firstName;
+      console.log(req.session.backUrl);
       if (!req.session.backUrl) {
         res.redirect("/auth/home");
       } else {
