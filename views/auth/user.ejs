@@ -21,13 +21,13 @@
     </div>
     <div class="tweet-items-wapper">
       <ul>
-        <% userTweets.forEach(data => { %>
+        <% userTweets.forEach(tweetData => { %>
         <div class="tweet-items">
-          <li>
-            <%= data.createdAt %>
-            <span> : </span>
-            <%= data.firstName %>
-          </li>
+          <div class="tweet-items-header">
+            <p class="tweet-author"><%= tweetData.User.firstName %></p>
+            <p class="tweet-date"><%= tweetData.createdAt %></p>
+          </div>
+          <li><%= tweetData.tweet %></li>
         </div>
         <% }); %>
       </ul>
