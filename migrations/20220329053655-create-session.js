@@ -11,7 +11,7 @@ module.exports = {
       sid: {
         type: Sequelize.STRING,
       },
-      userId: {
+      UserId: {
         type: Sequelize.INTEGER,
       },
       expires: {

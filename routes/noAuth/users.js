@@ -49,7 +49,6 @@ router.post("/resetPassword", async (req, res) => {
     res.render("users/showMailConfirmation", { user: user.dataValues });
   } catch (error) {
     res.render("users/resetPassword.ejs", { message: error.message });
-    console.log(error.message);
   }
 });
 

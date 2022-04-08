@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     verificationTokenExpiredAt: { type: DataTypes.DATE },
   });
   User.associate = (models) => {
-    User.hasMany(models.UserTweet, { foreignKey: "userId", sourceKey: "id" });
+    User.hasMany(models.UserTweet);
   };
   return User;
 };

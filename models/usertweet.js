@@ -1,13 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
   const UserTweet = sequelize.define("UserTweet", {
-    userId: { type: DataTypes.INTEGER },
+    UserId: { type: DataTypes.INTEGER },
     tweet: { type: DataTypes.TEXT },
   });
   UserTweet.associate = (models) => {
-    UserTweet.belongsTo(models.User, {
-      foreignKey: "userId",
-      targetKey: "id",
-    });
+    UserTweet.belongsTo(models.User);
   };
   return UserTweet;
 };

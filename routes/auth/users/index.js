@@ -14,9 +14,6 @@ router.get("/", async (req, res, next) => {
         },
       ],
     });
-    userTweets.forEach((element) => {
-      console.log(element.User.firstName);
-    });
     res.render("auth/user", { userTweets: userTweets });
   } catch (error) {
     res.send(error);
@@ -26,18 +23,18 @@ router.get("/", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     await UserTweet.create({
-      userId: req.session.userId,
+      UserId: req.session.userId,
       tweet: req.body.tweet,
     });
     const userTweets = await UserTweet.findAll({
       attributes: ["id", "tweet", "createdAt"],
+      order: [["createdAt", "DESC"]],
       include: [
         {
-          model: UserTweet,
-          attributes: ["userId", "tweet", "createdAt"],
+          model: User,
+          attributes: ["id", "firstName"],
         },
       ],
-      order: [[UserTweet, "createdAt", "DESC"]],
     });
     res.render("auth/user", { userTweets: userTweets });
   } catch (error) {

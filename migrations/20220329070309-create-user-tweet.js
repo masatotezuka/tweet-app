@@ -8,9 +8,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      userId: {
+      UserId: {
         type: Sequelize.INTEGER,
-        //外部キーの指定
+        references: {
+          model: "Users",
+          key: "id",
+        },
       },
       tweet: {
         allowNull: false,

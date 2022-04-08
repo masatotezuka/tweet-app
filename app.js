@@ -27,7 +27,7 @@ function extendDefaultFields(defaults, session) {
   return {
     data: defaults.data,
     expires: defaults.expires,
-    userId: session.userId,
+    UserId: session.userId,
   };
 }
 app.use(
@@ -61,12 +61,10 @@ app.use("/auth", auth);
 app.use((req, res, next) => {
   if (req.session.userId) {
     res.redirect("/auth/home");
-    console.log("リダイレクト");
     return;
   }
   next();
 });
-
 app.use("/", noAuth);
 
 app.use((req, res) => {
