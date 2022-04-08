@@ -15,6 +15,7 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 
+//セッション
 const memoryStore = new SequelizeStore({
   db: sequelize,
   table: "Session",
@@ -39,6 +40,7 @@ app.use(
   })
 );
 
+//csrf
 const csrfProtection = csrf({ cookie: false });
 app.use(csrfProtection);
 app.use((req, res, next) => {
