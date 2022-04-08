@@ -57,8 +57,18 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/", noAuth);
 app.use("/auth", auth);
+app.use((req, res, next) => {
+  if (req.session.userId) {
+    res.redirect("/auth/home");
+    console.log("リダイレクト");
+    return;
+  }
+  next();
+});
+
+app.use("/", noAuth);
+
 app.use((req, res) => {
   res.render("error/error404");
 });

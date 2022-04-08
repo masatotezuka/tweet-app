@@ -10,6 +10,7 @@ module.exports = {
       },
       userId: {
         type: Sequelize.INTEGER,
+        //外部キーの指定
       },
       tweet: {
         allowNull: false,

@@ -7,12 +7,9 @@ const logout = require("./logout");
 
 router.use("/", (req, res, next) => {
   if (req.session.userId) {
-    console.log("ろぐいん" + req.session.userId);
     next();
   } else {
-    console.log("ログイン失敗" + req.originalUrl);
     req.session.backUrl = req.originalUrl;
-    console.log("ログイン失敗" + req.originalUrl);
     res.redirect("/login");
   }
 });

@@ -6,16 +6,6 @@ const signUp = require("./signUp");
 const login = require("./login");
 const users = require("./users");
 
-// router.use((req, res, next) => {
-//   if (req.session.userId) {
-//     res.redirect("/auth/home");
-//     console.log("リダイレクト");
-//     return;
-//   }
-//   console.log("next");
-//   next();
-// });
-
 router.use("/", home);
 router.use("/signUp", signUp);
 router.use("/login", login);
