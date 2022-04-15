@@ -145,6 +145,10 @@
   width: 50%;
 }
 
+.user-wrapper .error-message {
+  text-align: center;
+}
+
 .user-wrapper .tweet-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;

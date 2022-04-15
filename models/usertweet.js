@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   });
   UserTweet.associate = (models) => {
     UserTweet.belongsTo(models.User);
+    UserTweet.hasMany(models.UserFavorite);
   };
   return UserTweet;
 };
