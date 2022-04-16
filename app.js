@@ -9,17 +9,19 @@ require("dotenv").config();
 
 const noAuth = require("./routes/noAuth");
 const auth = require("./routes/auth");
+const api = require("./routes/api");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
-
+app.use(express.json());
+//セッション
 const memoryStore = new SequelizeStore({
   db: sequelize,
   table: "Session",
   extendDefaultFields: extendDefaultFields,
-  checkExpirationInterval: 10 * 60 * 1000,
+  checkExpirationInterval: 30 * 60 * 1000,
   expiration: 24 * 60 * 60 * 1000,
 });
 
@@ -39,11 +41,11 @@ app.use(
   })
 );
 
+//csrf
 const csrfProtection = csrf({ cookie: false });
 app.use(csrfProtection);
 app.use((req, res, next) => {
   res.locals.csrfToken = req.csrfToken();
-  console.log("csrf");
   next();
 });
 
@@ -58,8 +60,12 @@ app.use((req, res, next) => {
 });
 
 app.use("/auth", auth);
+app.use("/api", api);
+
 app.use((req, res, next) => {
+  console.log(req.session);
   if (req.session.userId) {
+    console.log("helloo");
     res.redirect("/auth/home");
     return;
   }

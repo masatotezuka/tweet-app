@@ -1,6 +1,8 @@
 <%- include("../partials/header.ejs")%>
 <main>
   <div class="user-wrapper">
+    <p class="error-message"></p>
+    <p class="ajax-message"></p>
     <div class="tweet-wrapper">
       <form class="col s12" action="/auth/users" method="post">
         <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
@@ -28,6 +30,15 @@
             <p class="tweet-date"><%= tweetData.createdAt %></p>
           </div>
           <li><%= tweetData.tweet %></li>
+          <form action="">
+            <div class="tweet-favorite-wrapper">
+              <label for="tweet-favorite-<%=tweetData.id%>">
+                <input type="checkbox" id="tweet-favorite-<%=tweetData.id%>" />
+                <span>いいね</span>
+              </label>
+              <p id="favorite-count-<%=tweetData.id %>">0</p>
+            </div>
+          </form>
         </div>
         <% }); %>
       </ul>
