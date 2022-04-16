@@ -9,7 +9,7 @@ require("dotenv").config();
 
 const noAuth = require("./routes/noAuth");
 const auth = require("./routes/auth");
-const ajax = require("./routes/ajax");
+const api = require("./routes/api");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -60,7 +60,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/auth", auth);
-app.use("/ajax", ajax);
+app.use("/api", api);
 
 app.use((req, res, next) => {
   console.log(req.session);

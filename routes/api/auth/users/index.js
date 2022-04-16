@@ -1,24 +1,22 @@
 const express = require("express");
-
 const router = express.Router();
-const { UserFavorite, sequelize } = require("../../models/index");
+const { UserFavorite, sequelize } = require("../../../../models/index");
 
 router.get("/", async (req, res, next) => {
-  console.log("GET");
   try {
     const userFavoriteCounts = await UserFavorite.findAll({
       attributes: [
         "UserTweetId",
         [sequelize.fn("COUNT", sequelize.col("UserTweetId")), "favoriteCounts"],
       ],
-      where: { isFavorite: true },
       group: "UserTweetId",
     });
+
     const userFavorites = await UserFavorite.findAll({
-      attributes: ["UserId", "UserTweetId", "isFavorite"],
+      attributes: ["UserId", "UserTweetId"],
       where: { UserId: req.session.userId },
     });
-
+    console.log(userFavoriteCounts, userFavorites);
     res.json([userFavorites, userFavoriteCounts]);
   } catch (error) {
     res.send(error);
@@ -27,21 +25,32 @@ router.get("/", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    const favorite = await UserFavorite.findOne({
-      where: { UserTweetId: req.body.tweetId, UserId: req.session.userId },
+    await UserFavorite.create({
+      UserTweetId: req.body.tweetId,
+      UserId: req.session.userId,
     });
-    if (!favorite) {
-      await UserFavorite.create({
-        isFavorite: req.body.isFavorite,
+
+    const favoriteCounts = await UserFavorite.count({
+      where: { UserTweetId: req.body.tweetId },
+    });
+
+    res.json(favoriteCounts);
+    return;
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+router.delete("/", async (req, res, next) => {
+  try {
+    await UserFavorite.destroy({
+      where: {
         UserTweetId: req.body.tweetId,
         UserId: req.session.userId,
-      });
-    } else {
-      favorite.isFavorite = req.body.isFavorite;
-      await favorite.save();
-    }
+      },
+    });
     const favoriteCounts = await UserFavorite.count({
-      where: { UserTweetId: req.body.tweetId, isFavorite: true },
+      where: { UserTweetId: req.body.tweetId },
     });
     res.json(favoriteCounts);
     return;
